@@ -24,27 +24,37 @@ FCFS mainly says first come first serve the algorithm which came first will be s
 
 #include<stdio.h>
 int main(){
-    int i,n,bt[10],wt[10],tat[10];//n-processes,bt-burst time,wt-waiting time,tat-turnaround time
+    
+    //n-processes,bt-burst time,wt-waiting time,tat-turnaround time
+    int i,n,bt[10],wt[10],tat[10];
+    
+    //wtavg-average waiting time,tatavg-turnaround time average
     float wtavg,tatavg;
+    
     printf("Enter the number of processes---");
     scanf("%d",&n);
+    
     for(i=0;i<n;i++)
     {
         printf("\nEnter the burst time for process %d:",i);
         scanf("%d",&bt[i]);
     }
+    
     wt[0]=wtavg=0;
     tat[0]=tatavg=bt[0];
+    
     for(i=1;i<n;i++){
         wt[i]=wt[i-1]+bt[i-1];
         tat[i]=tat[i-1]+bt[i];
         wtavg=wtavg+wt[i];
         tatavg+=tat[i];
     }
+    
     printf("\n\tPROCESS\tBURST TIME\tWAITING TIME\tTURNAROUND TIME\n");
     for(i=0;i<n;i++){
         printf("\n\tp%d\t%d\t%d\t%d",i,bt[i],wt[i],tat[i]);
     }
+    
     printf("\nAverage waiting time is---%.2f",wtavg/n);
     printf("\nAverage turnaround time is---%.2f",tatavg/n);
 }
