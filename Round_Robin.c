@@ -23,8 +23,10 @@ increment it by time-slot and the loop continues until all the processes are com
 
 #include<stdio.h>
 int main(){
-    int i,n,ts,t=0,bt[10],wt[10],tat[10],rem_bt[10];//t-current time
-    float awt,atat;
+    
+    int i,n,ts,t=0,bt[10],wt[10],tat[10],rem_bt[10];//t-current time,ts-timeslice
+    float awt,atat;//awt-average waiting time,atat-average turnaround time 
+    
     printf("ROUND ROBIN SCHEDULING\n");
     printf("Enter the number of Processes\n");
     scanf("%d",&n);
@@ -35,6 +37,7 @@ int main(){
         scanf("%d",&bt[i]);
         rem_bt[i]=bt[i];
     }
+    
     while(1){
         int done=1;
         for(i=1;i<=n;i++){
@@ -54,6 +57,7 @@ int main(){
         if(done==1)
             break;
     }
+    
     printf("\nROUND ROBIN SCHEDULING\n");
     printf("\n\nPROCESS\tBURST TIME\tWAITING TIME\tTURNAROUND TIME");
     for(i=1;i<=n;i++){
@@ -62,6 +66,7 @@ int main(){
         atat+=tat[i];
         printf("\n%d\t%d\t%d\t%d",i,bt[i],wt[i],tat[i]);
     }
+    
     printf("\nAverage Waiting Time=%.2f",awt/n);
     printf("\nAverage Turnaround Time=%.2f",atat/n);                                                                                                                                                                                                            
 }
